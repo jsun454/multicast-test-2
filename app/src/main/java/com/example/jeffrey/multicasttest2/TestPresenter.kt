@@ -7,18 +7,19 @@ import androidx.leanback.widget.Presenter
 
 class TestPresenter : Presenter() {
     override fun onCreateViewHolder(parent: ViewGroup?): ViewHolder {
-        return ViewHolder(BaseCardView(parent?.context))
+        return ViewHolder(TestRowView(parent!!.context))
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder?, item: Any?) {
-        val card = item as Card
-        val cardView = viewHolder?.view as ImageCardView
-        cardView.titleText = card.name
+        (viewHolder?.view as TestRowView).bind(item as Card)
+        //val card = item as Card
+        //val cardView = viewHolder?.view as TestRowView
+        //cardView.titleText = card.name
     }
 
     override fun onUnbindViewHolder(viewHolder: ViewHolder?) {
-        val cardView = viewHolder?.view as ImageCardView
-        cardView.titleText = "-----"
+        //val cardView = viewHolder?.view as TestRowView
+        //cardView.titleText = "-----"
     }
 
 }
