@@ -16,6 +16,7 @@
         android:textSize="350sp"
         android:ellipsize="end"
         android:lines="1"
+        android:text="HELLO"
         tools:text="HELLO"/>
 
 </fragment>
