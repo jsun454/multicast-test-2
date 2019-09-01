@@ -2,9 +2,7 @@ package com.example.jeffrey.multicasttest2
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.leanback.widget.BaseCardView
-import androidx.leanback.widget.ImageCardView
-import androidx.leanback.widget.Presenter
+import androidx.leanback.widget.*
 
 class TestPresenter : Presenter() {
     override fun onCreateViewHolder(parent: ViewGroup?): ViewHolder {
@@ -22,5 +20,22 @@ class TestPresenter : Presenter() {
         //val cardView = viewHolder?.view as TestRowView
         //cardView.titleText = "-----"
     }
-
 }
+//
+//class TestPresenter2 : ListRowPresenter() {
+//    override fun onBindRowViewHolder(holder: RowPresenter.ViewHolder?, item: Any?) {
+//
+////        (holder?.view as TestRowView).bind(item as Card)
+//    }
+//
+//    override fun isUsingDefaultShadow(): Boolean {
+//        return false
+//    }
+//
+//    override fun isUsingDefaultListSelectEffect(): Boolean {
+//        return false
+//    }
+//
+//    override fun onSelectLevelChanged(holder: RowPresenter.ViewHolder?) {
+//    }
+//}
