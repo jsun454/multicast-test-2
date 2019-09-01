@@ -30,6 +30,24 @@ class MainFragment : BrowseSupportFragment() {
         }
         setAdapter(adapter)
 
+        for(i in 1..3) {
+            var count = 0
+
+            val handler = Handler(Looper.getMainLooper())
+            handler.post(object : Runnable {
+                override fun run() {
+                    val rowAdapter = ArrayObjectAdapter(TestPresenter())
+                    rowAdapter.add(Card(" Racer ${++count}"))
+                    val row = TestRow("Row $i", rowAdapter)
+                    val headerItem = HeaderItem(row.name)
+                    val listRow = ListRow(headerItem, row.adapter)
+
+                    adapter.replace(i-1, listRow)
+                    handler.postDelayed(this, 100)
+                }
+            })
+        }
+
         //badgeDrawable = ContextCompat.getDrawable(activity!!.baseContext,
         //    R.drawable.app_icon_your_company)
         title = "Racers"
