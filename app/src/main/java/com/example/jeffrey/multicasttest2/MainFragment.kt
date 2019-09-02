@@ -1,34 +1,88 @@
+//package com.example.jeffrey.multicasttest2
+//
+//import android.os.Bundle
+//import android.os.Handler
+//import android.os.Looper
+//import android.util.Log
+//import androidx.core.content.ContextCompat
+//import androidx.leanback.app.BrowseSupportFragment
+//import androidx.leanback.widget.*
+//
+//class MainFragment : BrowseSupportFragment() {
+//    override fun onActivityCreated(savedInstanceState: Bundle?) {
+//        Log.d("Jeffrey Sun", "fragment!")
+//        super.onActivityCreated(savedInstanceState)
+//
+////        val ps = ClassPresenterSelector()
+////        ps.addClassPresenter(Card::class.java, TestPresenter())
+//
+//        val adapter = ArrayObjectAdapter(ListRowPresenter())
+//        for(i in 1..3) {
+//            val rowAdapter = ArrayObjectAdapter(TestPresenter())
+//            rowAdapter.add(Card("Racer!! $i"))
+//            val row = TestRow("Row $i", rowAdapter)
+//            //TestRowView(activity!!.baseContext)
+//            val headerItem = HeaderItem(row.name)
+//            val listRow = ListRow(headerItem, row.adapter)
+//            adapter.add(listRow)
+//
+//            //Handler(Looper.getMainLooper()).post { adapter.add(TestRowView(activity!!.baseContext)) }
+//        }
+//        setAdapter(adapter)
+//
+//        for(i in 1..3) {
+//            var count = 0
+//
+//            val handler = Handler(Looper.getMainLooper())
+//            handler.post(object : Runnable {
+//                override fun run() {
+//                    val rowAdapter = ArrayObjectAdapter(TestPresenter())
+//                    rowAdapter.add(Card(" Racer ${++count}"))
+//                    val row = TestRow("Row $i", rowAdapter)
+//                    val headerItem = HeaderItem(row.name)
+//                    val listRow = ListRow(headerItem, row.adapter)
+//
+//                    adapter.replace(i-1, listRow)
+//                    handler.postDelayed(this, 100)
+//                }
+//            })
+//        }
+//
+//        //badgeDrawable = ContextCompat.getDrawable(activity!!.baseContext,
+//        //    R.drawable.app_icon_your_company)
+//        title = "Racers"
+//        headersState = BrowseSupportFragment.HEADERS_ENABLED
+//        //isHeadersTransitionOnBackEnabled = true // ?
+//    }
+//}
+
+/* --------------------------- TESTING VERTICAL GRID SUPPORT FRAGMENT ----------------------------*/
+
 package com.example.jeffrey.multicasttest2
 
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import androidx.core.content.ContextCompat
-import androidx.leanback.app.BrowseSupportFragment
+import androidx.leanback.app.VerticalGridSupportFragment
 import androidx.leanback.widget.*
 
-class MainFragment : BrowseSupportFragment() {
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
+class MainFragment : VerticalGridSupportFragment() {
+    override fun onCreate(savedInstanceState: Bundle?) {
         Log.d("Jeffrey Sun", "fragment!")
-        super.onActivityCreated(savedInstanceState)
+        super.onCreate(savedInstanceState)
 
-//        val ps = ClassPresenterSelector()
-//        ps.addClassPresenter(Card::class.java, TestPresenter())
+        val mGridPresenter = GridPresenter()
+        mGridPresenter.numberOfColumns = 1
+        gridPresenter = mGridPresenter
 
-        val adapter = ArrayObjectAdapter(ListRowPresenter())
+        val mAdapter = ArrayObjectAdapter(TestPresenter())
         for(i in 1..3) {
-            val rowAdapter = ArrayObjectAdapter(TestPresenter())
-            rowAdapter.add(Card("Racer!! $i"))
-            val row = TestRow("Row $i", rowAdapter)
-            //TestRowView(activity!!.baseContext)
-            val headerItem = HeaderItem(row.name)
-            val listRow = ListRow(headerItem, row.adapter)
-            adapter.add(listRow)
+            mAdapter.add(Card("Racer!! $i"))
 
             //Handler(Looper.getMainLooper()).post { adapter.add(TestRowView(activity!!.baseContext)) }
         }
-        setAdapter(adapter)
+        adapter = mAdapter
 
         for(i in 1..3) {
             var count = 0
@@ -36,13 +90,7 @@ class MainFragment : BrowseSupportFragment() {
             val handler = Handler(Looper.getMainLooper())
             handler.post(object : Runnable {
                 override fun run() {
-                    val rowAdapter = ArrayObjectAdapter(TestPresenter())
-                    rowAdapter.add(Card(" Racer ${++count}"))
-                    val row = TestRow("Row $i", rowAdapter)
-                    val headerItem = HeaderItem(row.name)
-                    val listRow = ListRow(headerItem, row.adapter)
-
-                    adapter.replace(i-1, listRow)
+                    mAdapter.replace(i - 1, Card("Racer!! ${++count}"))
                     handler.postDelayed(this, 100)
                 }
             })
@@ -50,8 +98,7 @@ class MainFragment : BrowseSupportFragment() {
 
         //badgeDrawable = ContextCompat.getDrawable(activity!!.baseContext,
         //    R.drawable.app_icon_your_company)
-        title = "Racers"
-        headersState = BrowseSupportFragment.HEADERS_ENABLED
+//        title = "Racers"
         //isHeadersTransitionOnBackEnabled = true // ?
     }
 }

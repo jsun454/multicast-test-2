@@ -9,8 +9,10 @@ class MainActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fragment = MainFragment()
-        val fm = supportFragmentManager
-        fm.beginTransaction().replace(R.id.activity_main_fragment, fragment).commit()
+        if(savedInstanceState == null) {
+            val fragment = MainFragment()
+            val fm = supportFragmentManager
+            fm.beginTransaction().replace(R.id.activity_main_fragment, fragment).commit()
+        }
     }
 }
