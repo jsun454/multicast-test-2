@@ -77,20 +77,33 @@ class MainFragment : VerticalGridSupportFragment() {
         gridPresenter = mGridPresenter
 
         val mAdapter = ArrayObjectAdapter(TestPresenter())
-        for(i in 1..3) {
-            mAdapter.add(Card("Racer!! $i"))
+        val strArr = ArrayList<String>()
+        strArr.add("Bob")
+        strArr.add("Joe")
+        strArr.add("Will")
+        strArr.add("Billy")
+        strArr.add("Caleb")
+        strArr.add("Steve")
+        strArr.add("Kate")
+        strArr.add("Lily")
+        for(i in 1..8) {
+            mAdapter.add(Racer(strArr[i-1], 300, 300, 600, i, "Driving"))
 
             //Handler(Looper.getMainLooper()).post { adapter.add(TestRowView(activity!!.baseContext)) }
         }
         adapter = mAdapter
 
-        for(i in 1..3) {
+        for(i in 1..8) {
             var count = 0
 
             val handler = Handler(Looper.getMainLooper())
             handler.post(object : Runnable {
                 override fun run() {
-                    mAdapter.replace(i - 1, Card("Racer!! ${++count}"))
+                    val racer = mAdapter[i-1] as Racer
+                    racer.apply {
+                        mAdapter.replace(i - 1,
+                            Racer(name, lapTime, bestLap, timeLeft-1, kartNO, status))
+                    }
                     handler.postDelayed(this, 100)
                 }
             })
