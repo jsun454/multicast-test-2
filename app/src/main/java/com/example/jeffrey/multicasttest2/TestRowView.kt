@@ -13,17 +13,22 @@ import androidx.leanback.widget.BaseCardView
 import androidx.leanback.widget.ImageCardView
 import androidx.leanback.widget.ListRowPresenter
 import kotlinx.android.synthetic.main.partial_card.view.*
+import kotlinx.android.synthetic.main.racer_row.view.*
 
 class TestRowView(context: Context) : BaseCardView(context) {
     init {
         isFocusable = true
         isFocusableInTouchMode = true
         val inflater = LayoutInflater.from(context)
-        inflater.inflate(R.layout.partial_card, this)
-
-        txt1.text = "REPLACED"
+        inflater.inflate(R.layout.racer_row, this)
     }
-    fun bind(card: Card) {
-        txt2.text = card.name
+    fun bind(racer: Racer) {
+        name.text = racer.name
+        lap_time.text = racer.lapTime.toString()
+        best_lap.text = racer.bestLap.toString()
+        remaining_time.text = racer.timeLeft.toString()
+        kart.text = racer.kartNO.toString()
+        status.text = racer.status
     }
 }
+// UPDATED TO TEST RACER INSTEAD OF CARD

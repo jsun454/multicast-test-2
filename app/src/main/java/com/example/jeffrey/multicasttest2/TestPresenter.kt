@@ -10,7 +10,7 @@ class TestPresenter : Presenter() {
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder?, item: Any?) {
-        (viewHolder?.view as TestRowView).bind(item as Card)
+        (viewHolder?.view as TestRowView).bind(item as Racer) // now using racer not card
         //val card = item as Card
         //val cardView = viewHolder?.view as TestRowView
         //cardView.titleText = card.name
