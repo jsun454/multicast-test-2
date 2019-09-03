@@ -2,4 +2,13 @@
 <resources>
 
     <style name="AppTheme" parent="@style/Theme.Leanback" />
+    <style
+        name="AppTheme.Widget.Leanback.GridItems.VerticalGridView"
+        parent="Widget.Leanback.GridItems.VerticalGridView">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:gravity">left|start|top</item>
+
+    </style>
+
 </resources>
