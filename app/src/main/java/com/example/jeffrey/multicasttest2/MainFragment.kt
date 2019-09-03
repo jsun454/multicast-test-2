@@ -72,11 +72,15 @@ class MainFragment : VerticalGridSupportFragment() {
         Log.d("Jeffrey Sun", "fragment!")
         super.onCreate(savedInstanceState)
 
-        val mGridPresenter = GridPresenter()
-        mGridPresenter.numberOfColumns = 1
+        val mGridPresenter = GridPresenter().apply {
+            numberOfColumns = 1
+        }
         gridPresenter = mGridPresenter
 
         val mAdapter = ArrayObjectAdapter(TestPresenter())
+        // somehow add header row? (Name Lap Time etc.)
+        // then maybe the class to be displayed on the scoreboard should contain only strings and
+        // no ints, etc. (make it different from the class to be received from multicast)
         val strArr = ArrayList<String>()
         strArr.add("Bob")
         strArr.add("Joe")
@@ -94,7 +98,7 @@ class MainFragment : VerticalGridSupportFragment() {
         adapter = mAdapter
 
         for(i in 1..8) {
-            var count = 0
+//            var count = 0
 
             val handler = Handler(Looper.getMainLooper())
             handler.post(object : Runnable {
