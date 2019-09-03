@@ -21,6 +21,7 @@ class TestRowView(context: Context) : BaseCardView(context) {
         isFocusableInTouchMode = true
         val inflater = LayoutInflater.from(context)
         inflater.inflate(R.layout.racer_row, this)
+        background.alpha = 0
     }
     fun bind(racer: Racer) {
         name.text = racer.name
